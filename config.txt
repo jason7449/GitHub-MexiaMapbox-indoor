@@ -1,0 +1,4 @@
+[Primary Sensor]
+lat=40.7750943
+long=-73.872637
+heading=0

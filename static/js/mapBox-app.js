@@ -3,12 +3,70 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/jason7449/cjhtmx25o81yy2snrswfoca8r',
      center: [-73.87217, 40.77512],
-    zoom: 17.92,
+    zoom: 19.08,
     pitch: 10, //x-axis
     bearing: 0, //y-axis
     hash: true,
-    container: 'map'
+    container: 'map',
+//    interactive: false // disable dragging & zoom
 });
+
+//// disable map zoom when using scroll
+//map.scrollZoom.disable();
+//map.dragging.disable();
+
+
+
+
+
+
+
+
+//----------------------Start get source from URL--------------
+var position_data = "http://127.0.0.1:5000/position"
+map.on('load', function () {
+    window.setInterval(function() {
+        map.getSource('people').setData(position_data);
+    }, 300);
+
+    map.addSource('people', { type: 'geojson', data: position_data });
+    map.addLayer({
+        "id": "people",
+        "type": "symbol",
+        "source": "people",
+        "layout": {
+            "icon-image": "triangle-15"
+        }
+    });
+
+
+});
+
+
+
+
+//var url = 'https://wanderdrone.appspot.com/';
+//map.on('load', function () {
+//    window.setInterval(function() {
+//        map.getSource('drone').setData(url);
+//    }, 500);
+//
+//    map.addSource('drone', { type: 'geojson', data: url });
+//    map.addLayer({
+//        "id": "drone",
+//        "type": "symbol",
+//        "source": "drone",
+//        "layout": {
+//            "icon-image": "triangle-15"
+//        }
+//    });
+//
+//
+//});
+
+//----------------------End get source from URL--------------
+
+
 
 
 
@@ -159,61 +217,3 @@ map.on('load', function () {
 
 
 
-//----------------------Start get source from URL--------------
-var position_data = "https://wanderdrone.appspot.com/"
-//var position_data = {"geometry": {"type": "Point", "coordinates": [-73.872637, 40.7750943]}, "type": "Feature", "properties": {}};
-// var position_data ={}
-//
-//$.ajax({
-//    url: '/api',
-//    type: 'POST',
-//    dataType: "json",
-//    success: function (map_data) {
-//      position_data = map_data
-//    }
-//});
-
-
-
-map.on('load', function () {
-    window.setInterval(function() {
-        map.getSource('people').setData(position_data);
-    }, 500);
-
-    map.addSource('people', { type: 'geojson', data: position_data });
-    map.addLayer({
-        "id": "people",
-        "type": "symbol",
-        "source": "people",
-        "layout": {
-            "icon-image": "triangle-15"
-        }
-    });
-
-
-});
-
-
-
-
-
-//var url = 'https://wanderdrone.appspot.com/';
-//map.on('load', function () {
-//    window.setInterval(function() {
-//        map.getSource('drone').setData(url);
-//    }, 500);
-//
-//    map.addSource('drone', { type: 'geojson', data: url });
-//    map.addLayer({
-//        "id": "drone",
-//        "type": "symbol",
-//        "source": "drone",
-//        "layout": {
-//            "icon-image": "triangle-15"
-//        }
-//    });
-//
-//
-//});
-
-//----------------------End get source from URL--------------
