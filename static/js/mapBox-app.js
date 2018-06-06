@@ -23,24 +23,24 @@ var map = new mapboxgl.Map({
 
 
 //----------------------Start get source from URL--------------
-var position_data = "http://127.0.0.1:5000/position"
-map.on('load', function () {
-    window.setInterval(function() {
-        map.getSource('people').setData(position_data);
-    }, 300);
-
-    map.addSource('people', { type: 'geojson', data: position_data });
-    map.addLayer({
-        "id": "people",
-        "type": "symbol",
-        "source": "people",
-        "layout": {
-            "icon-image": "triangle-15"
-        }
-    });
-
-
-});
+//var position_data = "http://127.0.0.1:5000/position"
+//map.on('load', function () {
+//    window.setInterval(function() {
+//        map.getSource('people').setData(position_data);
+//    }, 1000);
+//
+//    map.addSource('people', { type: 'geojson', data: position_data });
+//    map.addLayer({
+//        "id": "people",
+//        "type": "symbol",
+//        "source": "people",
+//        "layout": {
+//            "icon-image": "triangle-15"
+//        }
+//    });
+//
+//
+//});
 
 
 
@@ -78,6 +78,15 @@ map.on('load', function () {
 
 
 ////-----------------------start routing--------------------------------
+
+$.ajax({
+    url: '/position',
+    type: 'POST',
+    dataType: "json",
+    success: function (map_data) {
+    var route =  map_data
+
+
 // start_position
 var origin = [-73.872637, 40.7750943];
 
@@ -85,21 +94,7 @@ var origin = [-73.872637, 40.7750943];
 var destination = [-73.8726393, 40.7749636];
 var destination2 = [-73.8725728, 40.7749861];
 
-// A simple line from origin to destination.
-var route = {
-    "type": "FeatureCollection",
-    "features": [{
-        "type": "Feature",
-        "geometry": {
-            "type": "LineString",
-            "coordinates": [
-                origin,
-                destination,
-                destination2
-            ]
-        }
-    }]
-};
+
 
 // A single point that animates along the route.
 // Coordinates are initially set to origin.
@@ -195,23 +190,33 @@ map.on('load', function () {
         counter = counter + 1;
     }
 
-    document.getElementById('replay').addEventListener('click', function() {
-        // Set the coordinates of the original point back to origin
-        point.features[0].geometry.coordinates = origin;
-
-        // Update the source layer
-        map.getSource('point').setData(point);
-
-        // Reset the counter
-        counter = 0;
-
-        // Restart the animation.
-        animate(counter);
-    });
+//    document.getElementById('replay').addEventListener('click', function() {
+//        // Set the coordinates of the original point back to origin
+//        point.features[0].geometry.coordinates = origin;
+//
+//        // Update the source layer
+//        map.getSource('point').setData(point);
+//
+//        // Reset the counter
+//        counter = 0;
+//
+//        // Restart the animation.
+//        animate(counter);
+//    });
 
     // Start the animation.
     animate(counter);
 });
+
+    }});
+//fetch("http://127.0.0.1:5000/position")
+//.then(res => res.json())
+//.then((out) => {
+//  console.log('Checkout this JSON! ', );
+//  console.log(out)
+//  var route = out
+//}).catch(err => { throw err });
+
 ////-----------------------End routing--------------------------------
 
 

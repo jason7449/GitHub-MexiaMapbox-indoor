@@ -1,6 +1,9 @@
 from flask import *
 from dbModel import *
 import math
+from datetime import datetime, timedelta
+import urllib
+from sqlalchemy import create_engine
 
 
 app = Flask(__name__)
@@ -12,16 +15,78 @@ def index():
     return render_template('mapbox_index.html')
 
 
-@app.route('/position', methods=['GET'])
+
+
+@app.route('/position', methods=['POST'])
 def position():
     longLat = readConfig()
     # Update Position
-    obj = {'geometry': {'type': 'MultiPoint',
-                        'coordinates': [[-73.87227, 40.7750943], [-73.87315, 40.7750943], [-73.872637, 40.7750943], [-73.8728, 40.7750943]]},
-           'type': 'Feature', 'properties': {}}
+    obj = {"type": "FeatureCollection",
+           "features": [{
+               "type": "Feature",
+               "geometry": {
+                   "type": "LineString",
+                   "coordinates": [
+                       [-73.872637, 40.7750943],
+                       [-73.8726393, 40.7749636],
+                       [-73.8725728, 40.7749861]
+            ]
+        }
+    }]}
 
-    obj = update_position(obj, longLat)
+
+    # db_result = connectDatabase()
+    # obj = update_position(obj, longLat, db_result)
     return jsonify(obj)
+
+
+# Connect to Database
+def connectDatabase():
+    db_driver = "SQL Server"  # OS-Dependent
+    db_host = "40.122.209.102"
+    db_port = "1433"
+    db_name = "LaGuardiaAirport"
+    db_table = "ZoneLidar"
+    db_user = "sensor"
+    db_passwd = "RT_02dfE@"
+    db_Trace = "Yes"
+
+    params = urllib.parse.quote_plus("DRIVER={0};SERVER={1};Trace={2};PORT={3};DATABASE={4};".format(db_driver, db_host,
+                                                                                                     db_Trace, db_port,
+                                                                                                     db_name))
+    timeNow = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+    timeStart = datetime.now() - timedelta(seconds=1)
+    timeStart = timeStart.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+
+    # Select Query
+    sQuery = """
+                    SELECT [Id]
+                    ,[EventSensorTime]
+                    ,[objectClass]
+                    ,[PositionX]
+                    ,[PositionY]
+                    ,[PositionZ]
+                    ,[PositionLat]
+                    ,[PositionLong]
+                    FROM [{0}].[dbo].[{1}]
+                    WHERE [EventSensorTime] > '{2}' and [EventSensorTime] <='{3}' and [objectClass] = 'HUMAN'
+                    GROUP BY [EventSensorTime], [Id], [objectClass], [PositionX], [PositionY], [PositionZ], [PositionLat], [PositionLong]
+                """.format(db_name, db_table, timeStart, timeNow)
+
+    try:
+        engine = create_engine('mssql+pymssql://{}:{}@{}'.format(db_user, db_passwd, db_host))
+        connection = engine.connect()
+        results = engine.execute(sQuery).fetchall()
+        while results is not None:
+            # for item in results:
+            #     print('X:{}, Y:{}, Z:{}'.format(item[3], item[4], item[5]))
+            return results
+        connection.close()
+
+
+    except:
+        print('DB-connect-Error')
+        connection.close()
 
 
 # ReadConfig for Longitude and Latitude
@@ -41,14 +106,16 @@ def readConfig():
 
 
 # Update Object Position
-def update_position(obj, longLat):
-    lat_long = xyz_pos_to_geo(
-        longLat['long'], longLat['lat'], 0,
-        1.5, 1.5, 3)
+def update_position(obj, longLat, db_result):
+    # clear old coordinates
+    obj.get('geometry').get('coordinates').clear()
 
-    # update longitude and latitude
-    obj.get('geometry').get('coordinates')[0] = [lat_long["lat"], lat_long["long"]]
-    # obj.get('geometry').get('coordinates')[1] = lat_long["long"]
+    # Set New Coordinates
+    for index in range(len(db_result)):
+        lat_long = xyz_pos_to_geo( longLat['long'], longLat['lat'], 0,
+            db_result[index][3], db_result[index][4], db_result[index][5])
+        # update longitude and latitude
+        obj.get('geometry').get('coordinates').append([lat_long["lat"], lat_long["long"]])
 
     return obj
 
@@ -133,6 +200,7 @@ def xyz_pos_to_geo(
 if __name__ == '__main__':
     # Run Application
     app.run(debug=True)
+    # app.run(host='0.0.0.0', port='5000')
 
 
 # #Ajax Method
