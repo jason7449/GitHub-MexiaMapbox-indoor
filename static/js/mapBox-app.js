@@ -110,8 +110,12 @@ var point = {
     }]
 };
 
+    //for (var objNums = o; objNums < route.features.length ; objNums++){
+    //
+    //}
+
 // Calculate the distance in kilometers between route start/end point.
-var lineDistance = turf.lineDistance(route.features[0], 'kilometers');
+var lineDistance = turf.lineDistance(route.features[1], 'kilometers');
 
 var arc = [];
 
@@ -121,12 +125,12 @@ var steps = 300;
 
 // Draw an arc between the `origin` & `destination` of the two points
 for (var i = 0; i < lineDistance; i += lineDistance / steps) {
-    var segment = turf.along(route.features[0], i, 'kilometers');
+    var segment = turf.along(route.features[1], i, 'kilometers');
     arc.push(segment.geometry.coordinates);
 }
 
 // Update the route with calculated arc coordinates
-route.features[0].geometry.coordinates = arc;
+route.features[1].geometry.coordinates = arc;
 
 // Used to increment the value of the point measurement against the route.
 var counter = 0;
@@ -169,14 +173,14 @@ map.on('load', function () {
     function animate() {
         // Update point geometry to a new position based on counter denoting
         // the index to access the arc.
-        point.features[0].geometry.coordinates = route.features[0].geometry.coordinates[counter];
+        point.features[0].geometry.coordinates = route.features[1].geometry.coordinates[counter];
 
         // Calculate the bearing to ensure the icon is rotated to match the route arc
         // The bearing is calculate between the current point and the next point, except
         // at the end of the arc use the previous point and the current point
         point.features[0].properties.bearing = turf.bearing(
-            turf.point(route.features[0].geometry.coordinates[counter >= steps ? counter - 1 : counter]),
-            turf.point(route.features[0].geometry.coordinates[counter >= steps ? counter : counter + 1])
+            turf.point(route.features[1].geometry.coordinates[counter >= steps ? counter - 1 : counter]),
+            turf.point(route.features[1].geometry.coordinates[counter >= steps ? counter : counter + 1])
         );
 
         // Update the source with this new data.

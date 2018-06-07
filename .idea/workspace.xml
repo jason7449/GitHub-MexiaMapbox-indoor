@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8dd4436-400e-4215-a104-1ed88d948d9e" name="Default" comment="" />
+    <list default="true" id="f8dd4436-400e-4215-a104-1ed88d948d9e" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/mapBox-app.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/mapBox-app.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,8 +27,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+            <state relative-caret-position="442">
+              <caret line="41" column="12" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="41" selection-end-column="12" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -41,20 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="38" selection-start-line="38" selection-end-line="42" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="mapBox-app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/mapBox-app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
-              <caret line="103" column="26" lean-forward="true" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
+            <state relative-caret-position="34">
+              <caret line="112" selection-start-line="112" selection-start-column="2" selection-end-line="114" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -63,10 +58,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>L</find>
-      <find>markers</find>
-      <find>api</find>
-      <find>oxGL = L.Layer.extend(</find>
       <find>MapPets</find>
       <find>d</find>
       <find>airport-15</find>
@@ -87,11 +78,15 @@
       <find>position_data</find>
       <find>update_position</find>
       <find>map</find>
-      <find>lineDistance</find>
       <find>replay</find>
       <find>setInterval</find>
       <find>counter</find>
+      <find>lineDistance</find>
+      <find>route.features</find>
+      <find>animate</find>
+      <find>features</find>
       <find>route</find>
+      <find>objNums</find>
       <find>connectDatabase</find>
     </findStrings>
   </component>
@@ -284,7 +279,7 @@
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Python Console" order="3" />
       <window_info anchor="bottom" id="Terminal" order="0" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14114584" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.12135417" />
       <window_info anchor="right" id="R Packages" order="2" />
       <window_info anchor="right" id="R Graphics" order="0" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.3103082" />
@@ -680,6 +675,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/leaflet_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="51" column="19" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="48" column="121" selection-start-line="48" selection-start-column="113" selection-end-line="48" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/mapbox_index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="487">
@@ -694,24 +703,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/leaflet_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="19" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="38" selection-start-line="38" selection-end-line="42" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+        <state relative-caret-position="442">
+          <caret line="41" column="12" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="41" selection-end-column="12" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -720,8 +715,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/mapBox-app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="103" column="26" lean-forward="true" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
+        <state relative-caret-position="34">
+          <caret line="112" selection-start-line="112" selection-start-column="2" selection-end-line="114" selection-end-column="3" />
         </state>
       </provider>
     </entry>

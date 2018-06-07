@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 import urllib
 from sqlalchemy import create_engine
 
-
 app = Flask(__name__)
 
 
@@ -13,8 +12,6 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template('mapbox_index.html')
-
-
 
 
 @app.route('/position', methods=['POST'])
@@ -29,11 +26,22 @@ def position():
                    "coordinates": [
                        [-73.872637, 40.7750943],
                        [-73.8726393, 40.7749636],
-                       [-73.8725728, 40.7749861]
-            ]
-        }
-    }]}
+                       [-73.8725728, 40.7749861],
 
+                   ]
+               }
+           }, {
+               "type": "Feature",
+               "geometry": {
+                   "type": "LineString",
+                   "coordinates": [
+                       [-73.8725728, 40.7749861],
+                       [-73.872637, 40.7750943]
+                   ]
+               }
+           }
+           ]
+           }
 
     # db_result = connectDatabase()
     # obj = update_position(obj, longLat, db_result)
@@ -112,8 +120,8 @@ def update_position(obj, longLat, db_result):
 
     # Set New Coordinates
     for index in range(len(db_result)):
-        lat_long = xyz_pos_to_geo( longLat['long'], longLat['lat'], 0,
-            db_result[index][3], db_result[index][4], db_result[index][5])
+        lat_long = xyz_pos_to_geo(longLat['long'], longLat['lat'], 0,
+                                  db_result[index][3], db_result[index][4], db_result[index][5])
         # update longitude and latitude
         obj.get('geometry').get('coordinates').append([lat_long["lat"], lat_long["long"]])
 
@@ -121,7 +129,7 @@ def update_position(obj, longLat, db_result):
 
 
 # Functions for Calculating Position from "qguard_geolocation_translator"
-#==========================================================#
+# ==========================================================#
 # [Convert to Radians - deg_to_rad]
 #
 #  This function converts incoming degrees to radians
@@ -133,12 +141,13 @@ def update_position(obj, longLat, db_result):
 # [Output]
 #  Float:
 #   The incoming value in degrees converted to radians
-#==========================================================#
+# ==========================================================#
 
 def deg_to_rad(deg):
-  return (float(deg) * (math.pi / 180.0))
+    return (float(deg) * (math.pi / 180.0))
 
-#==========================================================#
+
+# ==========================================================#
 # [Convert to Degrees - rad_to_deg]
 #  This function converts incoming radians to degrees
 #
@@ -149,18 +158,18 @@ def deg_to_rad(deg):
 # [Output]
 #  Float:
 #   The incoming value in degrees converted to degrees
-#==========================================================#
+# ==========================================================#
 
 def rad_to_deg(rad):
-  return (float(rad) * (180.0 / math.pi))
+    return (float(rad) * (180.0 / math.pi))
 
 
-#======================================================#
+# ======================================================#
 #  This method appends geographic coordinates to the
 #  "position" dictionary and the track and speed to
 #  the "velocity" dictionary for each object in the
 #  object list
-#======================================================#
+# ======================================================#
 def xyz_pos_to_geo(
         origin_lat,
         origin_long,
@@ -199,9 +208,8 @@ def xyz_pos_to_geo(
 # Main Function
 if __name__ == '__main__':
     # Run Application
-    app.run(debug=True)
-    # app.run(host='0.0.0.0', port='5000')
-
+    # app.run(debug=True)
+    app.run(host='0.0.0.0', port='5000')
 
 # #Ajax Method
 # @app.route("/api", methods=['POST'])
