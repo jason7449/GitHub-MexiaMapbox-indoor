@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f8dd4436-400e-4215-a104-1ed88d948d9e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/mapbox_eno_map_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/mapBox-app.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/mapBox-app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mapbox_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mapbox_index.html" afterDir="false" />
-    </list>
+    <list default="true" id="f8dd4436-400e-4215-a104-1ed88d948d9e" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,8 +53,8 @@
       <file leaf-file-name="mapBox-app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/mapBox-app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+            <state relative-caret-position="551">
+              <caret line="103" column="26" lean-forward="true" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -727,8 +720,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/mapBox-app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
+        <state relative-caret-position="551">
+          <caret line="103" column="26" lean-forward="true" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
         </state>
       </provider>
     </entry>
